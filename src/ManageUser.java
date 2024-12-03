@@ -249,13 +249,14 @@ public class ManageUser extends javax.swing.JFrame {
         String status = (String) ComboBoxStatus.getSelectedItem();
 
         if (validateFields("new")) {
-            JOptionPane.showMessageDialog(null, "All field are require");
-        } else if (!email.matches("^[\\w.-]+@gmail\\.com$")) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid Gmail address (user@gmail.com)");
+            JOptionPane.showMessageDialog(null, "All fields are required");
+        } // Email validation
+        else if (!email.matches("^[\\w.-]+@(gmail\\.com|yahoo\\.com|bubt\\.edu\\.bd)$")) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid email address (e.g., user@gmail.com, user@yahoo.com, user@bubt.edu.bd)");
             return;
         } // Mobile number validation
-        else if (!mobileNumber.matches("\\d{11}")) {
-            JOptionPane.showMessageDialog(null, "Mobile number must be exactly 11 digits");
+        else if (!mobileNumber.matches("01\\d{9}")) {
+            JOptionPane.showMessageDialog(null, "Mobile number must start with '01' and be exactly 11 digits");
             return;
         } else {
             try {
@@ -327,17 +328,14 @@ public class ManageUser extends javax.swing.JFrame {
 
         if (validateFields("edit")) {
             JOptionPane.showMessageDialog(null, "All field are require");
-        }
-        else if (!email.matches("^[\\w.-]+@gmail\\.com$")) {
+        } else if (!email.matches("^[\\w.-]+@gmail\\.com$")) {
             JOptionPane.showMessageDialog(null, "Please enter a valid Gmail address (user@gmail.com)");
             return;
         } // Mobile number validation
         else if (!mobileNumber.matches("\\d{11}")) {
             JOptionPane.showMessageDialog(null, "Mobile number must be exactly 11 digits");
             return;
-        }
-        
-        else {
+        } else {
             try {
                 Connection con = ConnectionProvider.getCon();
                 PreparedStatement ps = con.prepareStatement("update appuser set name=?,mobileNumber=?,email=?,address=?,status=? where appuser_PK=?");

@@ -174,12 +174,13 @@ public class AddOwner extends javax.swing.JFrame {
 
         if (validateFields()) {
             JOptionPane.showMessageDialog(null, "All fields are required");
-        } else if (!email.matches("^[\\w.-]+@gmail\\.com$")) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid Gmail address (user@gmail.com)");
+        } // Email validation
+        else if (!email.matches("^[\\w.-]+@(gmail\\.com|yahoo\\.com|bubt\\.edu\\.bd)$")) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid email address (e.g., user@gmail.com, user@yahoo.com, user@bubt.edu.bd)");
             return;
         } // Mobile number validation
-        else if (!mobileNumber.matches("\\d{11}")) {
-            JOptionPane.showMessageDialog(null, "Mobile number must be exactly 11 digits");
+        else if (!mobileNumber.matches("01\\d{9}")) {
+            JOptionPane.showMessageDialog(null, "Mobile number must start with '01' and be exactly 11 digits");
             return;
         } else {
             try {
@@ -197,6 +198,7 @@ public class AddOwner extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, e);
             }
         }
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -256,17 +258,14 @@ public class AddOwner extends javax.swing.JFrame {
 
         if (validateFields()) {
             JOptionPane.showMessageDialog(null, "All fields are required");
-        }
-        else if (!email.matches("^[\\w.-]+@gmail\\.com$")) {
+        } else if (!email.matches("^[\\w.-]+@gmail\\.com$")) {
             JOptionPane.showMessageDialog(null, "Please enter a valid Gmail address (user@gmail.com)");
             return;
         } // Mobile number validation
         else if (!mobileNumber.matches("\\d{11}")) {
             JOptionPane.showMessageDialog(null, "Mobile number must be exactly 11 digits");
             return;
-        }
-        
-        else {
+        } else {
             try {
                 Connection con = ConnectionProvider.getCon();
                 PreparedStatement ps = con.prepareStatement("update owner set name=?,mobileNumber=?,email=? where owner_pk=?");
@@ -288,25 +287,25 @@ public class AddOwner extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this owner?", "Delete Confirmation", JOptionPane.YES_NO_OPTION);
-    
-    if (confirm == JOptionPane.YES_OPTION) {
-        try {
-            Connection con = ConnectionProvider.getCon();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM owner WHERE owner_pk = ?");
-            ps.setInt(1, OwnerPk);
-            int rowsAffected = ps.executeUpdate();
 
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Owner deleted successfully");
-                setVisible(false);
-                new AddOwner().setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Owner not found");
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+                Connection con = ConnectionProvider.getCon();
+                PreparedStatement ps = con.prepareStatement("DELETE FROM owner WHERE owner_pk = ?");
+                ps.setInt(1, OwnerPk);
+                int rowsAffected = ps.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    JOptionPane.showMessageDialog(null, "Owner deleted successfully");
+                    setVisible(false);
+                    new AddOwner().setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Owner not found");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
         }
-    }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
