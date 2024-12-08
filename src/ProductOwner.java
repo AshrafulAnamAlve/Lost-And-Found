@@ -8,14 +8,19 @@ import com.itextpdf.text.pdf.PdfWriter;
 import common.OpenPdf;
 import dao.ConnectionProvider;
 import dao.LostandFoundUtls;
+import java.awt.Image;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
 
 
 /*
@@ -93,10 +98,11 @@ public class ProductOwner extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         lblProduct = new javax.swing.JLabel();
+        btnImage = new javax.swing.JButton();
+        lblImage = new javax.swing.JLabel();
+        txtImagePath = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -242,15 +248,21 @@ public class ProductOwner extends javax.swing.JFrame {
         lblName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblName.setText("__________");
 
-        jLabel16.setText("jLabel16");
-
-        jLabel17.setText("jLabel17");
-
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel18.setText("Product Name :");
 
         lblProduct.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblProduct.setText("__________");
+
+        btnImage.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnImage.setText("Upload Image");
+        btnImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImageActionPerformed(evt);
+            }
+        });
+
+        lblImage.setText("jLabel16");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -261,7 +273,7 @@ public class ProductOwner extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(418, 418, 418)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 382, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -283,37 +295,44 @@ public class ProductOwner extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
-                        .addComponent(txtProductDesc, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtApproximatePrice, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtProductName))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel17)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel18))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblProduct)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                                .addComponent(txtProductDesc, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtApproximatePrice, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtProductName))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblName)
-                                .addGap(19, 19, 19)
-                                .addComponent(jLabel15)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11))
+                                .addGap(98, 98, 98)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel14)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblName))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel18)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblProduct))))
+                            .addComponent(jLabel12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel15))
+                    .addComponent(btnImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtImagePath))
                 .addGap(34, 34, 34))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -332,44 +351,39 @@ public class ProductOwner extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15)
+                            .addComponent(lblName))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                .addGap(35, 35, 35)
+                                .addGap(24, 24, 24)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel11))
+                                .addGap(1, 1, 1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel15)
-                                    .addComponent(lblName)))
-                            .addComponent(jLabel16))
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel11)
-                                .addComponent(jLabel18)
-                                .addComponent(lblProduct)))
+                                    .addComponent(jLabel18)
+                                    .addComponent(lblProduct))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
                                 .addComponent(txtOwnerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(24, 24, 24)
-                                        .addComponent(txtOwnerMobileNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton2)
-                                        .addGap(2, 2, 2))))
+                                .addGap(24, 24, 24)
+                                .addComponent(txtOwnerMobileNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -378,26 +392,34 @@ public class ProductOwner extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtApproximatePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addComponent(jLabel13)))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtImagePath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnImage)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(2, 2, 2)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtOwnerEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton3)
+                            .addComponent(txtProductDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtOwnerEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(37, 37, 37)
+                                .addComponent(jButton4))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton3)
-                                    .addComponent(txtProductDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(37, 37, 37)
-                                        .addComponent(jButton4))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(28, 28, 28)
-                                        .addComponent(jButton1))))))
-                    .addComponent(jLabel17))
-                .addContainerGap(95, Short.MAX_VALUE))
+                                .addGap(28, 28, 28)
+                                .addComponent(jButton1)))))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         pack();
@@ -537,96 +559,126 @@ public class ProductOwner extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if (!txtProductName.getText().equals("") && !txtOwnerName.getText().equals("")) {
+     if (!txtProductName.getText().equals("") && !txtOwnerName.getText().equals("")) {
         lostId = getUniqueId(" Bill- ");
 
         try {
+            // Insert data into the database
             SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy");
             Calendar cal = Calendar.getInstance();
             Connection con = ConnectionProvider.getCon();
-            PreparedStatement ps = con.prepareStatement("insert into productOwnerDetails(lostId,owner_fk,submitDate) values(?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO productOwnerDetails (lostId, owner_fk, submitDate, productImagePath) VALUES (?, ?, ?, ?)");
             ps.setString(1, lostId);
             ps.setInt(2, OwnerPk);
             ps.setString(3, myFormat.format(cal.getTime()));
+            ps.setString(4, txtImagePath.getText());  // Assuming txtImagePath contains the image path
             ps.executeUpdate();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Error inserting data: " + e.getMessage());
+            return; // Exit on database error
         }
 
-        // Generate PDF
+        // Generate the PDF document
         com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
         try {
-            SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy");
-            Calendar cal = Calendar.getInstance();
-            PdfWriter.getInstance(doc, new FileOutputStream(LostandFoundUtls.billPath + "" + lostId + ".pdf"));
+            // Set up the PDF writer
+            PdfWriter.getInstance(doc, new FileOutputStream(LostandFoundUtls.billPath + lostId + ".pdf"));
             doc.open();
 
-            // Project Title
-            Paragraph projectName = new Paragraph("                                                              Lost And Found\n");
-            doc.add(projectName);
+            // Add project title
+            doc.add(new Paragraph("                                                              Lost And Found\n"));
+            doc.add(new Paragraph("****************************************************************************************************************"));
 
-            // Separator
-            Paragraph starLine = new Paragraph("****************************************************************************************************************");
-            doc.add(starLine);
+            // Add details
+            SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy");
+            Calendar cal = Calendar.getInstance();
+            doc.add(new Paragraph("\tID: " + lostId + "\nDate: " + myFormat.format(cal.getTime())));
 
-            // Details Section
-            Paragraph details = new Paragraph("\tID: " + lostId + "\nDate: " + myFormat.format(cal.getTime()));
-            doc.add(details);
+            // Add owner details
+            doc.add(new Paragraph("\nOwner Name: " + txtOwnerName.getText() + "\nPhone Number: " + txtOwnerMobileNumber.getText() + "\n"));
+            doc.add(new Paragraph("****************************************************************************************************************"));
 
-            // Fetch Owner Details
-            String ownerName = txtOwnerName.getText();
-            String phoneNumber = txtOwnerMobileNumber.getText();
+            // Add image to PDF
+            String imagePath = txtImagePath.getText();
+            File imageFile = new File(imagePath);
 
-            // Add Owner Details to PDF
-            Paragraph ownerDetails = new Paragraph("\nOwner Name: " + ownerName + "\nPhone Number: " + phoneNumber + "\n");
-            doc.add(ownerDetails);
-            doc.add(starLine);
+            if (imageFile.exists()) {
+                com.itextpdf.text.Image img = com.itextpdf.text.Image.getInstance(imagePath); // Use iText's Image class
+                img.scaleToFit(200, 200); // Resize the image to fit the PDF
+                doc.add(img);
+            } else {
+                doc.add(new Paragraph("Image not found."));
+            }
 
-            // Product Table
-            PdfPTable tbl = new PdfPTable(4);
-            PdfPCell nameCell = new PdfPCell(new Phrase("Name"));
-            PdfPCell descriptionCell = new PdfPCell(new Phrase("Description"));
-            PdfPCell priceCell = new PdfPCell(new Phrase("Approximate Price"));
-            PdfPCell quantityCell = new PdfPCell(new Phrase("Quantity"));
+            // Add product details table
+            PdfPTable tbl = new PdfPTable(4); // Table with 4 columns
+            String[] headers = {"Name", "Description", "Approximate Price", "Quantity"};
+            BaseColor headerColor = new BaseColor(255, 204, 51);
 
-            BaseColor backgroundColor = new BaseColor(255, 204, 51);
-            nameCell.setBackgroundColor(backgroundColor);
-            descriptionCell.setBackgroundColor(backgroundColor);
-            priceCell.setBackgroundColor(backgroundColor);
-            quantityCell.setBackgroundColor(backgroundColor);
+            for (String header : headers) {
+                PdfPCell cell = new PdfPCell(new Phrase(header));
+                cell.setBackgroundColor(headerColor);
+                tbl.addCell(cell);
+            }
 
-            tbl.addCell(nameCell);
-            tbl.addCell(descriptionCell);
-            tbl.addCell(priceCell);
-            tbl.addCell(quantityCell);
-
-            // Add Product Details to Table
+            // Add rows from tableDetails
             for (int i = 0; i < tableDetails.getRowCount(); i++) {
-                tbl.addCell(tableDetails.getValueAt(i, 1).toString());
-                tbl.addCell(tableDetails.getValueAt(i, 4).toString());
-                tbl.addCell(tableDetails.getValueAt(i, 3).toString());
-                tbl.addCell(tableDetails.getValueAt(i, 2).toString());
+                tbl.addCell(tableDetails.getValueAt(i, 1).toString()); // Name
+                tbl.addCell(tableDetails.getValueAt(i, 4).toString()); // Description
+                tbl.addCell(tableDetails.getValueAt(i, 3).toString()); // Price
+                tbl.addCell(tableDetails.getValueAt(i, 2).toString()); // Quantity
             }
             doc.add(tbl);
-            doc.add(starLine);
+            doc.add(new Paragraph("****************************************************************************************************************"));
 
-            // Thank You Message
-            Paragraph thanksMsg = new Paragraph("Thank You for visit");
-            doc.add(thanksMsg);
+            // Add thank you message
+            doc.add(new Paragraph("Thank You for visiting."));
 
             // Open the PDF
             OpenPdf.openbtId(lostId);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Error generating PDF: " + e.getMessage());
+        } finally {
+            doc.close(); // Ensure the document is closed
         }
-        doc.close();
+
+        // Reset the form and navigate to the next screen
         setVisible(false);
         new ProductOwner().setVisible(true);
     } else {
-        JOptionPane.showMessageDialog(null, "Please add product or Owner details");
+        JOptionPane.showMessageDialog(null, "Please add product or owner details.");
     }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImageActionPerformed
+        // TODO add your handling code here:
+       
+   JFileChooser fileChooser = new JFileChooser();
+    fileChooser.setDialogTitle("Select an Image");
+
+    // Set file filter for images
+    fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Image Files", "jpg", "png", "jpeg"));
+
+    int result = fileChooser.showOpenDialog(this);
+
+    if (result == JFileChooser.APPROVE_OPTION) {
+        File selectedFile = fileChooser.getSelectedFile();
+        
+        // Get the image file path and set it in the text field
+        String imagePath = selectedFile.getAbsolutePath();
+        
+        // Set the image path to a variable to use in the database insertion later
+        txtImagePath.setText(imagePath);  // Assuming txtImagePath is the JTextField for displaying image path
+
+        // Display the selected image in the JLabel
+        ImageIcon imageIcon = new ImageIcon(imagePath);
+        Image image = imageIcon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH);  // Resize the image to fit the label
+        lblImage.setIcon(new ImageIcon(image));  // Set the image to the JLabel
+    }
+
+
+    }//GEN-LAST:event_btnImageActionPerformed
 
     /**
      * @param args the command line arguments
@@ -664,6 +716,7 @@ public class ProductOwner extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnImage;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -675,8 +728,6 @@ public class ProductOwner extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -689,12 +740,14 @@ public class ProductOwner extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblProduct;
     private javax.swing.JTable tableDetails;
     private javax.swing.JTable tableOwner;
     private javax.swing.JTable tableProduct;
     private javax.swing.JTextField txtApproximatePrice;
+    private javax.swing.JTextField txtImagePath;
     private javax.swing.JTextField txtOwnerEmail;
     private javax.swing.JTextField txtOwnerMobileNumber;
     private javax.swing.JTextField txtOwnerName;
