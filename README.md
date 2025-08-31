@@ -28,7 +28,7 @@ The **Lost and Found System** is a Java and MySQL-based desktop application desi
 | **4. Category** | Add/Edit/Delete product categories | ![4 Category](Images/4Category.png) |
 | **5. Lost Product** | Add lost/found product details | ![5 Lost Product](Images/5LostProduct.png) |
 | **6. Owner Details** | Add owner information (name, email, phone) | ![6 Owner Details](Images/6OwnerDetails.png) |
-| **7. Owner and Product** | View combined product-owner information | ![7 Owner and Product](Images/7 OwnerAndProduct.png) |
+| **7. Owner and Product** | View combined product-owner information | ![7 Owner and Product](Images/7OwnerAndProduct.png) |
 | **8. View** | View all items and generate PDF reports | ![8 View](Images/8View.png) |
 ---
 
