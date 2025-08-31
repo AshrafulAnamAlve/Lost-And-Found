@@ -20,19 +20,16 @@ The **Lost and Found System** is a Java and MySQL-based desktop application desi
 
 ## Application Pages & Screenshots
 
-| Page | Description | Screenshot |
-|------|-------------|------------|
-| **1. Login** | User authentication | ![Login](Images/login.png) |
-| **2. Home** | Dashboard with navigation | ![Home](Images/home.png) |
-| **3. User** | Manage user accounts (Admin only) | ![User](Images/user.png) |
-| **4. Category** | Add/Edit/Delete categories for products | ![Category](Images/category.png) |
-| **5. Lost Product** | Add lost/found product details | ![Lost Product](Images/lost_product.png) |
-| **6. Owner Details** | Add owner information | ![Owner Details](Images/owner_details.png) |
-| **7. Owner and Product** | View combined product-owner info | ![Owner and Product](Images/owner_product.png) |
-| **8. View** | View all items and generate PDF report | ![View & PDF](Images/view.png) |
-
-> **Note:** Replace `Images/*.png` with your actual screenshot files. Page 8 can **generate PDF** of the item details.
-
+| Page No & Name | Description | Screenshot |
+|----------------|------------|------------|
+| **1. Login** | User authentication (Admin/User login) | ![1 Login](Images/login.png) |
+| **2. Home** | Dashboard with navigation buttons | ![2 Home](Images/home.png) |
+| **3. User** | Manage user accounts (Admin only) | ![3 User](Images/user.png) |
+| **4. Category** | Add/Edit/Delete product categories | ![4 Category](Images/category.png) |
+| **5. Lost Product** | Add lost/found product details | ![5 Lost Product](Images/lost_product.png) |
+| **6. Owner Details** | Add owner information (name, email, phone) | ![6 Owner Details](Images/owner_details.png) |
+| **7. Owner and Product** | View combined product-owner information | ![7 Owner and Product](Images/owner_product.png) |
+| **8. View** | View all items and generate PDF reports | ![8 View](Images/view.png) |
 ---
 
 ## Technology Stack
