@@ -22,14 +22,14 @@ The **Lost and Found System** is a Java and MySQL-based desktop application desi
 
 | Page No & Name | Description | Screenshot |
 |----------------|------------|------------|
-| **1. Login** | User authentication (Admin/User login) | ![1 Login](Images/1 login.png) |
-| **2. Home** | Dashboard with navigation buttons | ![2 Home](Images/2 home.png) |
-| **3. User** | Manage user accounts (Admin only) | ![3 User](Images/3 user.png) |
-| **4. Category** | Add/Edit/Delete product categories | ![4 Category](Images/4 category.png) |
-| **5. Lost Product** | Add lost/found product details | ![5 Lost Product](Images/5 lost product.png) |
-| **6. Owner Details** | Add owner information (name, email, phone) | ![6 Owner Details](Images/6 owner details.png) |
-| **7. Owner and Product** | View combined product-owner information | ![7 Owner and Product](Images/7 owner product.png) |
-| **8. View** | View all items and generate PDF reports | ![8 View](Images/8 view.png) |
+| **1. Login** | User authentication (Admin/User login) | ![1 Login](Images/1 Login.png) |
+| **2. Home** | Dashboard with navigation buttons | ![2 Home](Images/2Home.png) |
+| **3. User** | Manage user accounts (Admin only) | ![3 User](Images/3 User.png) |
+| **4. Category** | Add/Edit/Delete product categories | ![4 Category](Images/4 Category.png) |
+| **5. Lost Product** | Add lost/found product details | ![5 Lost Product](Images/5 Lost Product.png) |
+| **6. Owner Details** | Add owner information (name, email, phone) | ![6 Owner Details](Images/6 Owner Details.png) |
+| **7. Owner and Product** | View combined product-owner information | ![7 Owner and Product](Images/7 Owner And Product.png) |
+| **8. View** | View all items and generate PDF reports | ![8 View](Images/8 View.png) |
 ---
 
 ## Technology Stack
